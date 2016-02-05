@@ -16,6 +16,7 @@ class ClashOfClans
 	/**
 	 * Send a Request to SuperCell's Servers and contains the authorization-Token.
 	 *
+	 * @param string $url
 	 * @return string; response from API (json)
 	 */
 	protected function sendRequest($url)
@@ -112,7 +113,7 @@ class ClashOfClans
 	public function getRankList($locationId, $clans = false) //if clans is not set to true, return player ranklist
 	{
 		$json;
-		if($clans)
+		if ($clans)
 		{
 			$json = $this->sendRequest("https://api.clashofclans.com/v1/locations/".$locationId."/rankings/clans");
 		}

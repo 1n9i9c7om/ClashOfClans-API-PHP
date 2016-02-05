@@ -10,10 +10,10 @@ class CoC_Clan
 	protected $tag; 
 
 	/**
-	* Constructor of CoC_Clan
-	* 
-	* @param $tag, clantag as string (including #)
-	*/
+	 * Constructor of CoC_Clan
+	 * 
+	 * @param $tag, clantag as string (including #)
+	 */
 	public function __construct($tag) 
 	{
 		$this->api = new ClashOfClans();
@@ -41,20 +41,20 @@ class CoC_Clan
 	}
 
 	/**
-   	 * Gets the clan's description
-   	 *
-   	 * @return string, description
-   	 */
+	 * Gets the clan's description
+	 *
+	 * @return string, description
+	 */
 	public function getDescription()
 	{
 		return $this->api->getClanByTag($this->tag)->description;
 	}
 
 	/**
-   	 * Gets the clan's type
-   	 *
-   	 * @return string, type ("open", "inviteOnly" or "closed")
-   	 */
+	 * Gets the clan's type
+	 *
+	 * @return string, type ("open", "inviteOnly" or "closed")
+	 */
 	public function getType()
 	{
 		return $this->api->getClanByTag($this->tag)->type;
@@ -71,14 +71,14 @@ class CoC_Clan
 	}
 
 	/**
-	* Get's the URL to the clan badge in the given size.
-	* 
-	* @param (optional) $size ("small", "medium", "large")
-	* @return string, URL to the picture
-	*/
+	 * Get's the URL to the clan badge in the given size.
+	 * 
+	 * @param (optional) $size ("small", "medium", "large")
+	 * @return string, URL to the picture
+	 */
 	public function getBadgeUrl($size = "") //small, large, medium.
 	{
-		switch($size)
+		switch ($size)
 		{
 			case "small":
 				return $this->api->getClanByTag($this->tag)->badgeUrls->small; 
@@ -97,97 +97,97 @@ class CoC_Clan
 	}
 
 	/**
-   	 * Gets the clan's war frequency
-   	 *
-   	 * @return string, war-frequency ("always", "lessThanOncePerWeek", "once per week", "moreThanOncePerWeek" or "unknown")
-   	 */
+	 * Gets the clan's war frequency
+	 *
+	 * @return string, war-frequency ("always", "lessThanOncePerWeek", "once per week", "moreThanOncePerWeek" or "unknown")
+	 */
 	public function getWarFrequency()
 	{
 		return $this->api->getClanByTag($this->tag)->warFrequency;
 	}
 
 	/**
-   	 * Gets the clan's level
-   	 *
-   	 * @return int, level
-   	 */
+	 * Gets the clan's level
+	 *
+	 * @return int, level
+	 */
 	public function getLevel()
 	{
 		return $this->api->getClanByTag($this->tag)->clanLevel;
 	}
 
 	/**
-   	 * Gets the clan's war wins
-   	 *
-   	 * @return int, wins
-   	 */
+	 * Gets the clan's war wins
+	 *
+	 * @return int, wins
+	 */
 	public function getWarWins()
 	{
 		return $this->api->getClanByTag($this->tag)->warWins;
 	}
 
 	/**
-   	 * Gets the clan's points (trophies)
-   	 *
-   	 * @return int, points
-   	 */
+	 * Gets the clan's points (trophies)
+	 *
+	 * @return int, points
+	 */
 	public function getPoints()
 	{
 		return $this->api->getClanByTag($this->tag)->clanPoints;
 	}
 
 	/**
-   	 * Gets the clan's required trophies to join
-   	 *
-   	 * @return int, required trophies
-   	 */
+	 * Gets the clan's required trophies to join
+	 *
+	 * @return int, required trophies
+	 */
 	public function getRequiredTrophies()
 	{
 		return $this->api->getClanByTag($this->tag)->requiredTrophies;
 	}
 
 	/**
-   	 * Gets the amount of members in the clan
-   	 *
-   	 * @return int, membercount
-   	 */
+	 * Gets the amount of members in the clan
+	 *
+	 * @return int, membercount
+	 */
 	public function getMemberCount()
 	{
 		return $this->api->getClanByTag($this->tag)->members;
 	}
 
 	/**
-   	 * Gets a member from the clan by providing an index (usually clan-ranklist position - 1)
-   	 * Member.class.php will work with the returned class.
-   	 *
-   	 * @return stdClass, member
-   	 */
+	 * Gets a member from the clan by providing an index (usually clan-ranklist position - 1)
+	 * Member.class.php will work with the returned class.
+	 *
+	 * @return stdClass, member
+	 */
 	public function getMemberByIndex($index)
 	{
 		return $this->api->getClanByTag($this->tag)->memberList[$index];
 	}
 
 	/**
-   	 * Gets an array of all members in the clan
-   	 *
-   	 * @return array (type of stdClass), all members
-   	 */
+	 * Gets an array of all members in the clan
+	 *
+	 * @return array (type of stdClass), all members
+	 */
 	public function getAllMembers()
 	{
 		return $this->api->getClanByTag($this->tag)->memberList;
 	}
 
 	/**
-   	 * Gets the first(!) member with the given name
-   	 * If there are multiple members using the same name inside the clan, use a different method.
-   	 *
-   	 * @return stdClass, member
-   	 */
+	 * Gets the first(!) member with the given name
+	 * If there are multiple members using the same name inside the clan, use a different method.
+	 *
+	 * @return stdClass, member
+	 */
 	public function getMemberByName($name)
 	{
-		foreach($this->api->getClanByTag($this->tag)->memberList as $member)
+		foreach ($this->api->getClanByTag($this->tag)->memberList as $member)
 		{
-			if($member->name == $name)
+			if ($member->name == $name)
 			{
 				return $member;
 			}
