@@ -1,4 +1,5 @@
 # ClashOfClans-API-PHP
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/badges/build.png?b=master)](https://scrutinizer-ci.com/g/1n9i9c7om/ClashOfClans-API-PHP/build-status/master)  
 
 This is a wrapper for SuperCell's official Clash Of Clans-API located at https://developer.clashofclans.com/#/
 
