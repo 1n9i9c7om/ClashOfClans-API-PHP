@@ -22,7 +22,7 @@ class CoC_Clan
 		$this->api = new ClashOfClans();
 		if($isTag)
 		{
-			$this->tag = $tag;
+			$this->tag = $tagOrClass;
 			$this->getClan();
 		}
 		else
