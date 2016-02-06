@@ -8,9 +8,9 @@ $germany->setLocationByName("Germany");
 
 $results = $api->getRankList($germany->getLocationId(), true);  //get the clan ranklist for the given location. 
 
-for($i = 0; $i < 10; $i++)
+for($i = 0; $i < 100; $i++)
 {
-	$clan = new CoC_Clan($results->items[$i]->tag);
+	$clan = new CoC_Clan($results->items[$i], false); //updated constructor allows passing clan-classes returned from getRankList if the second parameter is set to false
 	echo $clan->getName() . "<br/>";
 }
 ?>

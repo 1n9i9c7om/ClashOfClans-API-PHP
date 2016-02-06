@@ -27,7 +27,7 @@ PHP with cURL support.
 * +getRankList();  
 
 **Clan.class.php** - gets information about a clan by using a tag  
-* +__construct(\$tag);  
+* +__construct(\$tagOrClass, $isTag);  
 * #getClan();
 * +getTag();  
 * +getName();  

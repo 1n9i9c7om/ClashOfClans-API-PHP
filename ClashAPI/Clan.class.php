@@ -12,14 +12,24 @@ class CoC_Clan
 
 	/**
 	 * Constructor of CoC_Clan
-	 * 
-	 * @param $tag, clantag as string (including #)
+	 * Either pass the clan tag or a stdClass containing all clan information.
+	 *
+	 * @param $tagOrClass
+	 * @param (optional) $isTag
 	 */
-	public function __construct($tag) 
+	public function __construct($tagOrClass, $isTag = true) 
 	{
 		$this->api = new ClashOfClans();
-		$this->tag = $tag;
-		$this->getClan();
+		if($isTag)
+		{
+			$this->tag = $tag;
+			$this->getClan();
+		}
+		else
+		{
+			$this->clan = $tagOrClass;
+		}
+		
    	}
 	
    	protected function getClan()
