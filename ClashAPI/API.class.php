@@ -66,7 +66,7 @@ class ClashOfClans
 	public function getClanMembersByTag($tag)
 	{
 		$json = $this->sendRequest("https://api.clashofclans.com/v1/clans/".urlencode($tag)."/members");
-		return json_deocde($json);
+		return json_decode($json);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class ClashOfClans
 	public function getLocationList()
 	{
 		$json = $this->sendRequest("https://api.clashofclans.com/v1/locations");
-		return json_deocde($json);
+		return json_decode($json);
 	}
 
 	/**
@@ -112,7 +112,6 @@ class ClashOfClans
 	 */
 	public function getRankList($locationId, $clans = false) //if clans is not set to true, return player ranklist
 	{
-		$json;
 		if ($clans)
 		{
 			$json = $this->sendRequest("https://api.clashofclans.com/v1/locations/".$locationId."/rankings/clans");

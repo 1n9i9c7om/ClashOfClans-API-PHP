@@ -8,6 +8,7 @@ class CoC_Clan
 {
 	protected $api;
 	protected $tag; 
+	protected $clan = NULL;
 
 	/**
 	 * Constructor of CoC_Clan
@@ -18,8 +19,18 @@ class CoC_Clan
 	{
 		$this->api = new ClashOfClans();
 		$this->tag = $tag;
+		$this->getClan();
    	}
 	
+   	protected function getClan()
+   	{
+   		if($this->clan == NULL)
+		{
+			$this->clan = $this->api->getClanByTag($this->tag);
+		}
+		return $this->clan;
+   	}
+
 	/**
 	 * Gets the clantag
 	 *
@@ -37,7 +48,7 @@ class CoC_Clan
    	 */
 	public function getName()
 	{
-		return $this->api->getClanByTag($this->tag)->name;
+		return $this->getClan()->name;
 	}
 
 	/**
@@ -47,7 +58,7 @@ class CoC_Clan
 	 */
 	public function getDescription()
 	{
-		return $this->api->getClanByTag($this->tag)->description;
+		return $this->getClan()->description;
 	}
 
 	/**
@@ -57,7 +68,7 @@ class CoC_Clan
 	 */
 	public function getType()
 	{
-		return $this->api->getClanByTag($this->tag)->type;
+		return $this->getClan()->type;
 	}
 
 	/**
@@ -67,7 +78,7 @@ class CoC_Clan
 	 */
 	public function getLocationId()
 	{
-		return $this->api->getClanByTag($this->tag)->location->id;
+		return $this->getClan()->location->id;
 	}
 
 	/**
@@ -81,16 +92,16 @@ class CoC_Clan
 		switch ($size)
 		{
 			case "small":
-				return $this->api->getClanByTag($this->tag)->badgeUrls->small; 
+				return $this->getClan()->badgeUrls->small; 
 				break;
 			case "medium":
-				return $this->api->getClanByTag($this->tag)->badgeUrls->medium;
+				return $this->getClan()->badgeUrls->medium;
 				break;
 			case "large":
-				return $this->api->getClanByTag($this->tag)->badgeUrls->large;
+				return $this->getClan()->badgeUrls->large;
 				break;
 			default:
-				return $this->api->getClanByTag($this->tag)->badgeUrls->large; //return the largest because it can be resized using HTML
+				return $this->getClan()->badgeUrls->large; //return the largest because it can be resized using HTML
 				break;
 		}
 		
@@ -103,7 +114,7 @@ class CoC_Clan
 	 */
 	public function getWarFrequency()
 	{
-		return $this->api->getClanByTag($this->tag)->warFrequency;
+		return $this->getClan()->warFrequency;
 	}
 
 	/**
@@ -113,7 +124,7 @@ class CoC_Clan
 	 */
 	public function getLevel()
 	{
-		return $this->api->getClanByTag($this->tag)->clanLevel;
+		return $this->getClan()->clanLevel;
 	}
 
 	/**
@@ -123,7 +134,7 @@ class CoC_Clan
 	 */
 	public function getWarWins()
 	{
-		return $this->api->getClanByTag($this->tag)->warWins;
+		return $this->getClan()->warWins;
 	}
 
 	/**
@@ -133,7 +144,7 @@ class CoC_Clan
 	 */
 	public function getPoints()
 	{
-		return $this->api->getClanByTag($this->tag)->clanPoints;
+		return $this->getClan()->clanPoints;
 	}
 
 	/**
@@ -143,7 +154,7 @@ class CoC_Clan
 	 */
 	public function getRequiredTrophies()
 	{
-		return $this->api->getClanByTag($this->tag)->requiredTrophies;
+		return $this->getClan()->requiredTrophies;
 	}
 
 	/**
@@ -153,7 +164,7 @@ class CoC_Clan
 	 */
 	public function getMemberCount()
 	{
-		return $this->api->getClanByTag($this->tag)->members;
+		return $this->getClan()->members;
 	}
 
 	/**
@@ -164,7 +175,7 @@ class CoC_Clan
 	 */
 	public function getMemberByIndex($index)
 	{
-		return $this->api->getClanByTag($this->tag)->memberList[$index];
+		return $this->getClan()->memberList[$index];
 	}
 
 	/**
@@ -174,7 +185,7 @@ class CoC_Clan
 	 */
 	public function getAllMembers()
 	{
-		return $this->api->getClanByTag($this->tag)->memberList;
+		return $this->getClan()->memberList;
 	}
 
 	/**
@@ -185,7 +196,7 @@ class CoC_Clan
 	 */
 	public function getMemberByName($name)
 	{
-		foreach ($this->api->getClanByTag($this->tag)->memberList as $member)
+		foreach ($this->api->getClan()->memberList as $member)
 		{
 			if ($member->name == $name)
 			{

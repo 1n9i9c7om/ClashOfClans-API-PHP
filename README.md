@@ -14,7 +14,7 @@ Keep in mind I'm not a web designer, this page is just to show how this wrapper 
 #Requirements
 PHP with cURL support.
 
-# ClashOfClans-API-PHP
+# Documentation
 
 **API.class.php** - gets the information from the API and sends the requests to Supercell's Servers.  
 * \#sendRequest(\$url);  
@@ -28,6 +28,7 @@ PHP with cURL support.
 
 **Clan.class.php** - gets information about a clan by using a tag  
 * +__construct(\$tag);  
+* #getClan();
 * +getTag();  
 * +getName();  
 * +getDescription();  
@@ -46,14 +47,17 @@ PHP with cURL support.
   
 **League.class.php** - gets information about a league by using a league ID.  
 * +__construct(\$leagueId);  
+* #getLeague();
 * +getLeague();  
 * +setLeagueByName();  
 * +getLeagueIcon(\$size);  
   
 **Location.class.php** - gets information about a location by using a location ID.  
 * +__construct(\$locationId);  
+* #getLocation();
 * +getLocation();  
 * +setLocationByName();  
+* +setLocationByCode();
 * +getLocationName();  
 * +isCountry();  
 * +getCountryCode();  

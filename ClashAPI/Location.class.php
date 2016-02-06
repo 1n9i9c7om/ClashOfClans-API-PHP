@@ -4,6 +4,7 @@ class CoC_Location
 {
 	protected $api;
 	protected $locationId;
+	protected $location = NULL;
     
 	/**
 	 * Constructor of CoC_Location
@@ -23,15 +24,22 @@ class CoC_Location
 	 */
 	protected function getLocation()
 	{
-		$location;
-		foreach ($this->api->getLocationList() as $location) 
+		if($this->location == NULL)
 		{
-			if ($location->id == $this->locationId) 
+			foreach ($this->api->getLocationList()->items as $location) 
 			{
-				return $league;
+				if ($location->id == $this->locationId) 
+				{
+					$this->location = $location;
+					return $this->location;
+				}
 			}
+			return 0;
 		}
-		return 0;
+		else
+		{
+			return $this->location;
+		}
 	}
     
 	/**
@@ -42,17 +50,48 @@ class CoC_Location
 	 */
 	public function setLocationByName($name)
 	{
-		foreach ($this->api->getLocationList() as $location) 
+		foreach ($this->api->getLocationList()->items as $location) 
 		{
 			if ($location->name == $name) 
 			{
-				$this->locationId = $league->id;
+				$this->locationId = $location->id;
+				$this->location = $location;
 				return 1;
 			}
 		}
 		return 0;
 	}
-    
+
+	/**
+	 * Sets the location by providing it's country code
+	 *
+     * @param string
+     * @return bool
+     */
+	public function setLocationByCode($cc)
+	{
+		foreach ($this->api->getLocationList()->items as $location) 
+		{
+			if ($location->countryCode == $cc) 
+			{
+				$this->locationId = $location->id;
+				$this->location = $location;
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	/**
+	 * Gets the location ID
+	 *
+	 * @return int
+	 */
+	public function getLocationId()
+	{
+		return $this->getLocation()->id;
+	}
+
 	/**
 	 * Gets the location name
 	 *

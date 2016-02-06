@@ -4,6 +4,7 @@ class CoC_League
 {
 	protected $api;
 	protected $leagueId;
+	protected $league = NULL;
     
 	/**
 	 * Constructor of CoC_League
@@ -23,15 +24,23 @@ class CoC_League
 	 */
 	protected function getLeague()
 	{
-		$league;
-		foreach ($this->api->getLeagueList() as $league) 
+		if($this->league == NULL)
 		{
-			if ($league->id == $this->leagueId) 
+			foreach ($this->api->getLeagueList()->items as $league) 
 			{
-				return $league;
+				if ($league->id == $this->leagueId) 
+				{
+					$this->league = $league;
+					return $this->league;
+				}
 			}
+			return 0;
 		}
-		return 0;
+		else
+		{
+			return $this->league;
+		}
+		
 	}
     
 	/**
@@ -42,17 +51,28 @@ class CoC_League
 	 */
 	public function setLeagueByName($name)
 	{
-		foreach ($this->api->getLeagueList() as $league) 
+		foreach ($this->api->getLeagueList()->items as $league) 
 		{
 			if ($league->name == $name) 
 			{
 				$this->leagueId = $league->id;
+				$this->league = $league;
 				return 1;
 			}
 		}
 		return 0;
 	}
     
+	/**
+	 * Gets the league ID
+	 *
+	 * @return int
+	 */
+	 public function getLeagueId()
+	 {
+		 return $this->getLeague()->id;
+	 }
+	
 	/**
 	 * Gets the league name
 	 *
