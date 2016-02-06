@@ -48,14 +48,12 @@ PHP with cURL support.
 **League.class.php** - gets information about a league by using a league ID.  
 * +__construct(\$leagueId);  
 * #getLeague();
-* +getLeague();  
 * +setLeagueByName();  
 * +getLeagueIcon(\$size);  
   
 **Location.class.php** - gets information about a location by using a location ID.  
 * +__construct(\$locationId);  
 * #getLocation();
-* +getLocation();  
 * +setLocationByName();  
 * +setLocationByCode();
 * +getLocationName();  
