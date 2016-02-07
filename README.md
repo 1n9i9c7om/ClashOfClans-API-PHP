@@ -24,7 +24,7 @@ $clan = new CoC_Clan($results->items[0]); //gets the first result from the array
 
 ### Get Clan Details
 ```php
-$clan = new CoC_Clan("##22UCCU0J"); 
+$clan = new CoC_Clan("#22UCCU0J"); 
 
 $clan->getName(); //returns foxforcefürth 
 $clan->getLevel(); //returns 5
