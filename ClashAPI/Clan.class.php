@@ -20,7 +20,7 @@ class CoC_Clan
 	public function __construct($tagOrClass) 
 	{
 		$this->api = new ClashOfClans();
-		if($is_string($tagOrClass))
+		if(is_string($tagOrClass))
 		{
 			$this->tag = $tagOrClass;
 			$this->getClan();
