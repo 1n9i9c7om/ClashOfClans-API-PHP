@@ -11,10 +11,18 @@ class CoC_League
 	 * 
 	 * @param $leagueId
 	 */
-	public function __construct($leagueId)
+	public function __construct($league)
 	{
 		$this->api      = new ClashOfClans();
-		$this->leagueId = $leagueId;
+		if(is_object($league))
+		{
+			$this->league = $league;
+		}
+		else
+		{
+			$this->leagueId = $league;
+			$this->getLeague();
+		}
 	}
     
 	/**

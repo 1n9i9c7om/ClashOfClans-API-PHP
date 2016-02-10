@@ -55,6 +55,16 @@ class CoC_Member
 	}
 
 	/**
+	 * Gets the members league
+ 	 *
+ 	 * @return stdClass
+ 	 */
+	public function getLeague()
+	{
+		return $this->memberObj->league;
+	}
+
+	/**
 	 * Gets the members trophy-count
 	 *
 	 * @return int, trophies

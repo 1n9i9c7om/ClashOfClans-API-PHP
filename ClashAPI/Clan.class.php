@@ -90,6 +90,16 @@ class CoC_Clan
 	{
 		return $this->getClan()->location->id;
 	}
+	
+	/**
+	 * Gets the clan's location.
+	 *
+	 * @return stdClass
+	 */
+	public function getLocation()
+	{
+		return $this->getClan()->location;
+	}
 
 	/**
 	 * Get's the URL to the clan badge in the given size.

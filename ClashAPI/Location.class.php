@@ -11,10 +11,18 @@ class CoC_Location
 	 * 
 	 * @param $locationId
 	 */
-	public function __construct($locationId)
+	public function __construct($location)
 	{
-		$this->api        = new ClashOfClans();
-		$this->locationId = $locationId;
+		$this->api = new ClashOfClans();
+		if(is_object($location))
+		{
+			$this->location = $location;
+		}
+		else
+		{
+			$this->locationId = $location;
+			$this->getLocation();
+		}
 	}
     
 	/**
