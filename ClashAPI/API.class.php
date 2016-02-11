@@ -45,6 +45,34 @@ class ClashOfClans
 		return json_decode($json);
 	}
 
+	/** 
+	 * Search for clans by using multiple parameters
+	 * 
+	 * @param array
+	 * @return array
+	 */
+	public function searchClan($parameters)
+	{
+		/*
+		Array can have these indexes: 
+		* name (string)
+		* warFrequency (string, {"always", "moreThanOncePerWeek", "oncePerWeek", "lessThanOncePerWeek", "never", "unknown"})
+		* locationId (integer)
+		* minMembers (integer)
+		* maxMembers (integer)
+		* minClanPoints (integer)
+		* minClanLevel (integer)
+		* limit (integer)
+		* after (integer)
+		* before (integer)
+		For more information, take a look at the official documentation: https://developer.clashofclans.com/#/documentation
+		*/
+
+		$json = $this->sendRequest("https://api.clashofclans.com/v1/clans?".http_build_query($parameters));
+		return json_decode($json);
+	}
+
+
 	/**
 	 * Get information of a clan
 	 *

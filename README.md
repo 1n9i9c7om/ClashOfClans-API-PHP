@@ -52,42 +52,43 @@ Some more example scripts are included in the "Examples"-folder inside this repo
 ## Documentation
 
 **API.class.php** - gets the information from the API and sends the requests to Supercell's Servers.  
-* \#sendRequest(\$url);  
-* +searchClanByName(\$searchString);  
-* +getClanByTag(\$tag);  
-* +getClanMembersByTag(\$tag);  
+* #sendRequest($url);  
+* +searchClanByName($searchString);  
+* +searchClan($parameters);
+* +getClanByTag($tag);  
+* +getClanMembersByTag($tag);  
 * +getLocationList();  
 * +getLocationInfo();  
 * +getLeagueList();  
 * +getRankList();  
 
 **Clan.class.php** - gets information about a clan by using a tag  
-* +__construct(\$tagOrClass);  
+* +__construct($tagOrClass);  
 * #getClan();
 * +getTag();  
 * +getName();  
 * +getDescription();  
 * +getType();  
 * +getLocationId();  
-* +getBadgeUrl(\$size);  
+* +getBadgeUrl($size);  
 * +getWarFrequency();  
 * +getLevel();  
 * +getWarWins();  
 * +getPoints();  
 * +getRequiredTrophies();  
 * +getMemberCount();  
-* +getMemberByIndex(\$index);  
+* +getMemberByIndex($index);  
 * +getAllMembers();  
-* +getMemberByName(\$name);  
+* +getMemberByName($name);  
   
 **League.class.php** - gets information about a league by using a league ID.  
-* +__construct(\$leagueId);  
+* +__construct($league);  
 * #getLeague();
 * +setLeagueByName();  
 * +getLeagueIcon(\$size);  
   
 **Location.class.php** - gets information about a location by using a location ID.  
-* +__construct(\$locationId);  
+* +__construct($location);  
 * #getLocation();
 * +setLocationByName();  
 * +setLocationByCode();
