@@ -12,7 +12,7 @@ Live-Demo of example: http://1n9i9c7om.com/coc/test.php
 Keep in mind I'm not a web designer, this page is just to show how this wrapper works.
 
 ## Requirements
-PHP with cURL support.
+PHP 5 or higher with cURL support.
 
 ## Usage
 ### Search for clans
