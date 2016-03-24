@@ -158,6 +158,16 @@ class CoC_Clan
 	}
 
 	/**
+	 * Gets the clan's war win streak
+	 *
+	 * @return int, win streak
+	 */
+	public function getWarWinStreak()
+	{
+		return $this->getClan()->warWinStreak;
+	}
+
+	/**
 	 * Gets the clan's points (trophies)
 	 *
 	 * @return int, points

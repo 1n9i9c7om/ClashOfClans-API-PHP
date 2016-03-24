@@ -74,6 +74,7 @@ Some more example scripts are included in the "Examples"-folder inside this repo
 * +getWarFrequency();  
 * +getLevel();  
 * +getWarWins();  
+* +getWarWinStreak();
 * +getPoints();  
 * +getRequiredTrophies();  
 * +getMemberCount();  
