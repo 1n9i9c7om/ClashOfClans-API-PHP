@@ -146,7 +146,7 @@ class ClashOfClans
 		}
 		else
 		{
-			$json = $this->sendRequest("https://api.clashofclans.com/v1/locations/".$locationId."/rankings/clans");
+			$json = $this->sendRequest("https://api.clashofclans.com/v1/locations/".$locationId."/rankings/players");
 		}
 		return json_decode($json);
 	}
