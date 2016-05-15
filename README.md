@@ -99,6 +99,7 @@ Some more example scripts are included in the "Examples"-folder inside this repo
   
 **Member.class.php** - gets information about a location by using an stdClass returned by *Clan.class.php*  
 * +__construct($memberObj);  
+* +getTag();
 * +getName();  
 * +getRole();  
 * +getLevel();  

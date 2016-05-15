@@ -13,6 +13,16 @@ class CoC_Member
 	{
 		$this->memberObj = $memberObj;
 	}
+	
+	/**
+	 * Gets the members tag (id)
+	 *
+	 * @return string, tag
+	 */
+	public function getTag()
+	{
+		return $this->memberObj->tag;
+	}
 
 	/**
 	 * Gets the members name
