@@ -47,7 +47,7 @@ foreach($members as $member)
 }
 ```
 
-Some more example scripts are included in the "Examples"-folder inside this repository.
+Some more example scripts (including Warlog usage) are included in the "Examples"-folder inside this repository.
 
 ## Documentation
 

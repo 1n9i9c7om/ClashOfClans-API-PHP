@@ -4,6 +4,8 @@ require_once "League.class.php";
 require_once "Location.class.php";
 require_once "Clan.class.php";
 require_once "Member.class.php";
+require_once "Warlog.class.php";
+require_once "LogEntry.class.php";
 
 /**
  * Class to get JSON-decoded arrays containing information provided by SuperCell's official Clash of Clans API located at https://developer.clashofclans.com
@@ -37,7 +39,7 @@ class ClashOfClans
 	 * Search all clans by name
 	 *
 	 * @param $searchString, the clan name, e.g. foxforcefürth
-	 * @return array, search results.
+	 * @return object, search results.
 	 */
 	public function searchClanByName($searchString)
 	{
@@ -49,7 +51,7 @@ class ClashOfClans
 	 * Search for clans by using multiple parameters
 	 * 
 	 * @param array
-	 * @return array
+	 * @return object
 	 */
 	public function searchClan($parameters)
 	{
@@ -77,7 +79,7 @@ class ClashOfClans
 	 * Get information of a clan
 	 *
 	 * @param $tag, clantag. (e.g. #22UCCU0J)
-	 * @return array, clan information.
+	 * @return object, clan information.
 	 */
 	public function getClanByTag($tag) //#22UCCU0J = foxforcefürth
 	{
@@ -89,7 +91,7 @@ class ClashOfClans
 	 * Get information about the membersof a clan
 	 *
 	 * @param $tag, clantag. (e.g. #22UCCU0J)
-	 * @return array, member information.
+	 * @return object, member information.
 	 */
 	public function getClanMembersByTag($tag)
 	{
@@ -100,7 +102,7 @@ class ClashOfClans
 	/**
 	 * Get a list of all locations supported by SuperCell's Clan-System
 	 *
-	 * @return array, all locations.
+	 * @return object, all locations.
 	 */
 	public function getLocationList()
 	{
@@ -112,7 +114,7 @@ class ClashOfClans
 	 * Get information about a location by providing it's id.
 	 *
 	 * @param $locationId
-	 * @return array, location info.
+	 * @return object, location info.
 	 */
 	public function getLocationInfo($locationId) //32000094 = Germany
 	{
@@ -123,7 +125,7 @@ class ClashOfClans
 	/**
 	 * Get information about all leages.
 	 *
-	 * @return array, league info.
+	 * @return object, league info.
 	 */
 	public function getLeagueList()
 	{
@@ -136,7 +138,7 @@ class ClashOfClans
 	 *
 	 * @param $locationId (tip: 32000006 is "International")
 	 * @param (optional) $clans
-	 * @return array, location info.
+	 * @return object, location info.
 	 */
 	public function getRankList($locationId, $clans = false) //if clans is not set to true, return player ranklist
 	{
@@ -149,6 +151,86 @@ class ClashOfClans
 			$json = $this->sendRequest("https://api.clashofclans.com/v1/locations/".$locationId."/rankings/players");
 		}
 		return json_decode($json);
+	}
+	
+	/**
+	 * Get whether the war log of a specific clan is public or not 
+	 *
+	 * @param $tag, clan tag
+	 * @return bool, warlog public yes/no.
+	 */
+	public function isWarlogPublic($tag)
+	{
+		$json = $this->sendRequest("https://api.clashofclans.com/v1/clans/".urlencode($tag)."/warlog");
+		$logInfo = json_decode($json);
+		if(property_exists($logInfo, "reason"))
+		{
+			if($logInfo->reason == "accessDenied")
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Get a clan's warlog by specifying it's clantag
+	 *
+	 * @param $tag, clan tag
+	 * @param (optional) $parameters array, other parameters (before, after, limit)
+	 * @return object, warlog. Dummy warlog when warlog not public.
+	 */
+	public function getWarlog($tag, $parameters = "")
+	{
+		if($this->isWarlogPublic($tag))
+		{
+			$json = $this->sendRequest("https://api.clashofclans.com/v1/clans/".urlencode($tag)."/warlog?".http_build_query($parameters));
+			return json_decode($json);
+		}
+		else
+		{
+			//dummy warlog:
+			return json_decode('{
+			  "items": [
+				{
+				  "result": "win",
+				  "endTime": "20160803T103621.000Z",
+				  "teamSize": 0,
+				  "clan": {
+					"tag": "#22UCCU0J",
+					"name": "foxforce",
+					"badgeUrls": {
+					  "small": "https://api-assets.clashofclans.com/badges/70/5tEhjxjRbdef_mG_PGehpowUmLJU4qPnY7zQJPv1Lj0.png",
+					  "large": "https://api-assets.clashofclans.com/badges/512/5tEhjxjRbdef_mG_PGehpowUmLJU4qPnY7zQJPv1Lj0.png",
+					  "medium": "https://api-assets.clashofclans.com/badges/200/5tEhjxjRbdef_mG_PGehpowUmLJU4qPnY7zQJPv1Lj0.png"
+					},
+					"clanLevel": 0,
+					"attacks": 0,
+					"stars": 0,
+					"destructionPercentage": 0,
+					"expEarned": 0
+				  },
+				  "opponent": {
+					"tag": "#22UCCU0J",
+					"name": "foxforce",
+					"badgeUrls": {
+					  "small": "https://api-assets.clashofclans.com/badges/70/LGoHdPrA6OiVcKYzDcIiF7SV8kWW1qd-EhWkvGPsARM.png",
+					  "large": "https://api-assets.clashofclans.com/badges/512/LGoHdPrA6OiVcKYzDcIiF7SV8kWW1qd-EhWkvGPsARM.png",
+					  "medium": "https://api-assets.clashofclans.com/badges/200/LGoHdPrA6OiVcKYzDcIiF7SV8kWW1qd-EhWkvGPsARM.png"
+					},
+					"clanLevel": 0,
+					"stars": 0,
+					"destructionPercentage": 0
+				  }
+				}
+			  ],
+			  "paging": {
+				"cursors": {
+				  "after": "0"
+				}
+			  }
+			}');
+		}
 	}
 };
 
