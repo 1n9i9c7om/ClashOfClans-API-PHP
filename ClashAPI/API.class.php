@@ -1,6 +1,4 @@
 <?php
-set_time_limit(0);
-
 require_once "League.class.php";
 require_once "Location.class.php";
 require_once "Clan.class.php";
@@ -15,7 +13,7 @@ require_once "Player.class.php";
 
 class ClashOfClans
 {
-	private $_apiKey = "#API KEY GOES HERE#";
+	private $_apiKey = "Change_This_To_Your_Token";
 	
 	/**
 	 * Send a Request to SuperCell's Servers and contains the authorization-Token.
