@@ -123,6 +123,16 @@ class CoC_Member
 	{
 		return $this->memberObj->donationsReceived;
 	}
+	
+		/**
+	 * Gets the donation ratio of the member
+	 *
+	 * @return int, ratio
+	 */
+	public function getDonationsRatio()
+	{
+		return round($this->memberObj->donations / (float) max($this->memberObj->donationsReceived, 1), 2);
+	}
 }
 
 ?>
