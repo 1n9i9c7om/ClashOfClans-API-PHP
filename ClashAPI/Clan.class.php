@@ -17,7 +17,7 @@ class CoC_Clan
 	 * @param $tagOrClass
 	 * @param (optional) $isTag
 	 */
-	public function __construct($tagOrClass) 
+	public function __construct($tagOrClass)
 	{
 		$this->api = new ClashOfClans();
 		if(is_string($tagOrClass))
@@ -29,7 +29,6 @@ class CoC_Clan
 		{
 			$this->clan = $tagOrClass;
 		}
-		
    	}
 	
    	protected function getClan()

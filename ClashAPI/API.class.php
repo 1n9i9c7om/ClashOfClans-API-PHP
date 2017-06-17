@@ -1,11 +1,11 @@
 <?php
-
 require_once "League.class.php";
 require_once "Location.class.php";
 require_once "Clan.class.php";
 require_once "Member.class.php";
 require_once "Warlog.class.php";
 require_once "LogEntry.class.php";
+require_once "Player.class.php";
 
 /**
  * Class to get JSON-decoded arrays containing information provided by SuperCell's official Clash of Clans API located at https://developer.clashofclans.com
@@ -26,12 +26,12 @@ class ClashOfClans
 		$ch = curl_init(); 
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   			'authorization: Bearer '.$this->_apiKey // 
 		));
 		$output = curl_exec($ch);
 		curl_close($ch); 
-
 		return $output;
 	}
 
@@ -74,6 +74,14 @@ class ClashOfClans
 		return json_decode($json);
 	}
 
+	/**
+	 * Get Player.
+	 */
+	public function getPlayer($tag)
+	{
+		$json = $this->sendRequest("https://api.clashofclans.com/v1/players/" . urlencode($tag));
+		return json_decode($json);
+	}
 
 	/**
 	 * Get information of a clan
