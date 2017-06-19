@@ -109,6 +109,7 @@ Some more example scripts (including Warlog usage) are included in the "Examples
 * +getPreviousClanRank();  
 * +getDonations();  
 * +getDonationsReceived();  
-  
+* +getDonationsRatio();   
+
 \# means protected  
 \+ means public
